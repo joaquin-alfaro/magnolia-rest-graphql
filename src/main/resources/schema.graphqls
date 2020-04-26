@@ -1,0 +1,39 @@
+directive @definition(workspace : String!, rootPath : String, nodeTypes : [String]) on FIELD_DEFINITION
+directive @delivery(workspace : String!, rootPath : String, nodeTypes : [String]) on FIELD_DEFINITION
+
+schema {
+    query: Query,
+    mutation: Mutation,
+    subscription: Subscription
+}
+
+type Query {
+    nodes(workspace: String!, path: String): [Node]
+}
+
+type Node {
+    name: String,
+    path: String,
+    nodeType: String,
+    properties: [Property]
+    children: [Node]
+}
+
+type Property {
+    name: String,
+    string: String,
+    asset: Asset,
+    reference(workspace: String): Node
+}
+
+type Asset {
+    url: String
+}
+
+type Mutation {
+
+}
+
+type Subscription{
+
+}

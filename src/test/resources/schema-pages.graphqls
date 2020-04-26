@@ -1,0 +1,16 @@
+directive @definition(workspace : String!, rootPath : String, nodeTypes : [String]) on FIELD_DEFINITION
+
+schema {
+    query: Query,
+}
+
+type Query {
+    pages_ql : [Page] @definition(workspace: "website", nodeTypes: ["mgnl:page"])
+}
+
+type Page {
+    name(jcrName: String): String,
+    title: String,
+    description: String,
+    children: [Page]
+}
